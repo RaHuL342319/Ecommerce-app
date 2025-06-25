@@ -6,6 +6,12 @@ import {
   userAvatarUpload,
   verifyUserEmail,
   removeImagefromCloudinary,
+  updateUserProfile,
+  forgotPassword,
+  validateForgotPasswordOtp,
+  resetPassword,
+  refreshTokenController,
+  getUserProfile,
 } from "../controllers/userControllers.js";
 import auth from "../middlewares/authMiddleware.js";
 import upload from "../middlewares/multer.js";
@@ -24,4 +30,11 @@ userRoute.put(
   userAvatarUpload
 );
 userRoute.delete("/delete-image", auth, removeImagefromCloudinary);
+userRoute.post("/forgot-password", forgotPassword);
+userRoute.post("/validate-forgot-password", validateForgotPasswordOtp);
+userRoute.post("/reset-password", resetPassword);
+userRoute.post("/refresh-token", refreshTokenController);
+userRoute.get("/profile", auth, getUserProfile);
+userRoute.put("/:id", auth, updateUserProfile);
+
 export default userRoute;
